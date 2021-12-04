@@ -60,6 +60,9 @@ public class Shop {
         List<Book> filteredList = currentInventory.stream()
                                 .filter(book -> book.getGenre().toString().contains(genre))
                                 .collect(Collectors.toList());
+        if (filteredList.isEmpty()) {
+            throw new Error("Can not find Books with desired genre.");
+        }
         return filteredList;
     }
 
