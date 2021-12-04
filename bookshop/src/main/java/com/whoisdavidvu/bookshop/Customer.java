@@ -7,13 +7,13 @@ public class Customer {
 
     private String name;                // name of customer
     private ArrayList<Book> ownedBooks; // ArrayList of owned books
-    private BigDecimal balance;         // amount of customer's balance
+    private BigDecimal currentBalance;         // amount of customer's balance
 
     // constructor of class Customer
-    public Customer(String n, String b) {
-        this.name = n;
+    public Customer(String newName, String newBalance) {
+        this.name = newName;
         this.ownedBooks = new ArrayList<Book>();
-        this.balance = new BigDecimal(b);
+        this.currentBalance = new BigDecimal(newBalance);
     }
 
     // returns customer's name 
@@ -21,17 +21,17 @@ public class Customer {
         return name;
     }
 
-    // returns customer's owned books
+    // returns Arraylist of customer's owned books
     public ArrayList<Book> getBooks() {
         return ownedBooks;
     }
 
     // returns customer's balance
     public BigDecimal getBalance() {
-        return balance;
+        return currentBalance;
     }
 
-    
+
 
 
     // main method to test basic functionality

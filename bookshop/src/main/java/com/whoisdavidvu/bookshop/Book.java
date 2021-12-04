@@ -8,16 +8,16 @@ public class Book {
     private enum Genre { Comedy, Horror, Action, Romance, Documentary, Thriller, Drama}
     
     private String title;       // title of book
-    private BigDecimal value;   // price of book
+    private BigDecimal bookValue;   // price of book
     private int pageCount;      // number of pages in the book
     private Genre genre;        // genre of book
 
     // constructor of class Book
-    public Book(String t, String v, int p, Genre g) {
-        this.title = t;
-        this.value = new BigDecimal(v);
-        this.pageCount = p;
-        this.genre = g;
+    public Book(String newTitle, String bookPrice, int numberOfPages, Genre bookGenre) {
+        this.title = newTitle;
+        this.bookValue = new BigDecimal(bookPrice);
+        this.pageCount = numberOfPages;
+        this.genre = bookGenre;
     }
 
     // returns the title of the book
@@ -27,7 +27,7 @@ public class Book {
 
     // returns the value of the book
     public BigDecimal getValue() {
-        return value;
+        return bookValue;
     }
 
     // returns the page count of the book
