@@ -11,7 +11,7 @@ public class ShopTest {
     
     // tests if money is added to cash when book is sold
     @Test
-    public void moneyReceived_afterTransaction() {
+    public void transaction_successful_afterMoneyReceived() {
         Customer bill = new Customer("Bill Gates", "2000");
         Shop bookshop = new Shop("Thalia", "1337");
         Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy);
@@ -24,7 +24,7 @@ public class ShopTest {
     // tests if the purchased book is not in inventory anymore
     // correct this test if multiple numbers of one book is available
     @Test
-    public void bookRemoval_returnsFalse_afterSuccessfulTransaction() {
+    public void transaction_returnsFalse_ifSoldBookRemoved() {
         Customer bill = new Customer("Bill Gates", "2000");
         Shop bookshop = new Shop("Thalia", "1337");
         Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy);
