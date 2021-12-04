@@ -10,9 +10,9 @@ public class Shop {
     private ArrayList<Book> currentInventory;   // list of current book inventory
 
     // constructor of class Shop
-    public Shop(String newName, String currentCash) throws IllegalArgumentException {
+    public Shop(String newName, String cashAsString) throws IllegalArgumentException {
         this.shopName = newName;
-        this.totalCash = new BigDecimal(currentCash);
+        this.totalCash = new BigDecimal(cashAsString);
         this.currentInventory = new ArrayList<Book>();
 
         if (shopName == null || newName.trim().isEmpty()) {

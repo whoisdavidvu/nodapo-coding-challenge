@@ -10,10 +10,10 @@ public class Customer {
     private BigDecimal currentBalance;         // amount of customer's balance
 
     // constructor of class Customer
-    public Customer(String newName, String newBalance) {
+    public Customer(String newName, String balanceAsString) {
         this.name = newName;
         this.ownedBooks = new ArrayList<Book>();
-        this.currentBalance = new BigDecimal(newBalance);
+        this.currentBalance = new BigDecimal(balanceAsString);
     }
 
     // returns customer's name 

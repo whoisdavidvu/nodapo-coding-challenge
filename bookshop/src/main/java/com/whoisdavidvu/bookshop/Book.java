@@ -13,9 +13,9 @@ public class Book {
     private Genre genre;        // genre of book
 
     // constructor of class Book
-    public Book(String newTitle, String bookPrice, int numberOfPages, Genre bookGenre) {
+    public Book(String newTitle, String priceAsString, int numberOfPages, Genre bookGenre) {
         this.title = newTitle;
-        this.bookValue = new BigDecimal(bookPrice);
+        this.bookValue = new BigDecimal(priceAsString);
         this.pageCount = numberOfPages;
         this.genre = bookGenre;
     }
