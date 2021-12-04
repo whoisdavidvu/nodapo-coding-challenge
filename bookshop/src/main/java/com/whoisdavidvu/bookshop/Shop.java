@@ -2,11 +2,8 @@ package com.whoisdavidvu.bookshop;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Shop {
@@ -75,7 +72,6 @@ public class Shop {
         this.currentInventory = new ArrayList<Book>(new HashSet<Book>(this.currentInventory));
     }
 
-    
     // returns list of same books as other shop
     public List<Book> getThisList(Shop otherShop) {
         return this.currentInventory.stream()
@@ -98,19 +94,6 @@ public class Shop {
 
     // displays same books in two different shops
     public void printMatchingList(Shop otherShop) {
-        /* List<Book> sharedList1 = this.currentInventory.stream()
-                                    .filter(two -> otherShop.currentInventory.stream()
-                                    .anyMatch(one -> one.getTitle().equals(two.getTitle())
-                                        && (one.getPageCount() == two.getPageCount())
-                                        && one.getGenre().equals(two.getGenre())))
-                                        .collect(Collectors.toList());
-        
-        List<Book> sharedList2 = otherShop.currentInventory.stream()
-                                        .filter(one -> this.currentInventory.stream()
-                                        .anyMatch(two -> one.getTitle().equals(two.getTitle())
-                                            && (one.getPageCount() == two.getPageCount())
-                                            && one.getGenre().equals(two.getGenre())))
-                                            .collect(Collectors.toList()); */
         System.out.println("Matching books from " + this.shopName + ": " + getThisList(otherShop));
         System.out.println();
         System.out.println("Matching books from " + otherShop.shopName + ": " + getOtherList(otherShop));
