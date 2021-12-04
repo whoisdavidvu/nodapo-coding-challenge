@@ -10,10 +10,15 @@ public class Shop {
     private ArrayList<Book> currentInventory;   // list of current book inventory
 
     // constructor of class Shop
-    public Shop(String newName, String currentCash) {
+    public Shop(String newName, String currentCash) throws IllegalArgumentException {
         this.shopName = newName;
         this.totalCash = new BigDecimal(currentCash);
         this.currentInventory = new ArrayList<Book>();
+
+        if (shopName == null || newName.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name is invalid!");
+        }
+
     }
 
     // returns shop name
