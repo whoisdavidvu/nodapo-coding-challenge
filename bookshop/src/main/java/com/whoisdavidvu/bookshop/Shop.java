@@ -33,7 +33,7 @@ public class Shop {
 
 
 
-
+    // main method for testing basic functionality
     public static void main (String[] args) {
         Shop bookshop = new Shop("Thalia", "1337");
         System.out.println("First shop's name is: " + bookshop.getShopName());
