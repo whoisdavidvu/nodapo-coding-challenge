@@ -33,4 +33,12 @@ public class ShopTest {
         Assertions.assertFalse(bookshop.getInventory().contains(narnia));
     }
 
+    // tests if the shop name is empty/invalid
+    @Test
+    public void creatingShop_throwsIAEX_ifShopNameInvalid() {
+        assertThrows(IllegalArgumentException.class, ()->{
+            Shop bookshop = new Shop("", "1337");
+        });
+    }
+
 }
