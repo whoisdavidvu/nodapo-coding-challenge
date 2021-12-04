@@ -155,7 +155,7 @@ public class ShopTest {
         );
     }
 
-    // tests if it finds books that dont overlap
+    // tests if it finds books that should not overlap
     @Test
     public void matchingBooks_returnsFalse_ifNonMatchingBooksInput() {
         Shop bookshop = new Shop("Thalia", "1337");
@@ -174,12 +174,14 @@ public class ShopTest {
         
         Assertions.assertEquals(bookshop.getThisList(secondshop).size(), bookshop.getOtherList(secondshop).size());
 
+        // checks bookshop's list for 3 books that should not overlap
         Assertions.assertFalse(
             bookshop.getThisList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Narnia")) ||
             bookshop.getThisList(secondshop).stream().anyMatch(o -> o.getTitle().equals("LOTR")) ||
             bookshop.getThisList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Moby-Dick"))
         );
 
+        // checks secondshop's list for 3 books that should not overlap
         Assertions.assertFalse(
             bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Narnia")) ||
             bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("LOTR")) ||
