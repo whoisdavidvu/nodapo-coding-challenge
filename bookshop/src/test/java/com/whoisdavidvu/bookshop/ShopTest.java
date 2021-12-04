@@ -3,7 +3,9 @@ package com.whoisdavidvu.bookshop;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import java.math.BigDecimal;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -91,4 +93,33 @@ public class ShopTest {
         Assertions.assertFalse(filteredList.contains(narnia));
     }
 
+    // tests if shop still has duplicates after running function
+    @Test
+    public void duplicateDelete_returnsTrue_ifShopHasUniqueBooks() {
+        Shop bookshop = new Shop("Thalia", "1337");
+
+        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy);
+        Book gatesBio = new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography);
+        Book gatesBioDuplicate = new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography);
+        Book jobsBio = new Book("Steve Jobs' Biography", "49.99", 1024, Genres.Biography);
+        Book mobydick = new Book("Moby-Dick", "29.99", 599, Genres.Adventure);
+        Book odyssey = new Book("Odyssey", "19.99", 333, Genres.Adventure);
+        
+        bookshop.addBook(narnia);
+        bookshop.addBook(gatesBio);
+        bookshop.addBook(gatesBioDuplicate);
+        bookshop.addBook(jobsBio);
+        bookshop.addBook(jobsBio);
+        bookshop.addBook(mobydick);
+        bookshop.addBook(odyssey);
+
+        // set contains unique elements
+        Set<Book> set = new HashSet<Book>(bookshop.getInventory());
+        Assertions.assertTrue(set.size() < bookshop.getInventory().size());
+        bookshop.findDeleteDuplicates();
+        Assertions.assertFalse(set.size() < bookshop.getInventory().size());
+        Assertions.assertTrue(set.size() == bookshop.getInventory().size());
+    }
+
+    
 }
