@@ -23,6 +23,9 @@ public class Book {
         if (bookValue.compareTo(BigDecimal.ZERO) < 0)  {
             throw new IllegalArgumentException("Price can not be negative!");
         }
+        if (bookValue.scale() > 2)  {
+            throw new IllegalArgumentException("Price is invalid!");
+        }
         if (pageCount <= 0 || numberOfPages <= 0) {
             throw new IllegalArgumentException("Book has to have pages!");
         }
