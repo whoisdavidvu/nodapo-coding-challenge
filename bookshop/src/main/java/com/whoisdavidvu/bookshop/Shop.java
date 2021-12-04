@@ -41,13 +41,40 @@ public class Shop {
     }
 
 
+    // simply adds a book to the inventory arraylist
+    public void addBook(Book b) {
+        currentInventory.add(b);
+    }
+
+    // adds value of sold book into cash and removes book from inventory
+    public void soldBook(Book b) {
+        this.totalCash = this.totalCash.add(b.getValue());
+        this.currentInventory.remove(b);
+    }    
+
+
 
     // main method for testing basic functionality
     public static void main (String[] args) {
-        Shop bookshop = new Shop("Thalia", "-2");
-        System.out.println("First shop's name is: " + bookshop.getShopName());
-        System.out.println("First shop's sales figure is: " + bookshop.getBalance());
-        System.out.println("First shop's inventory is: " + bookshop.getInventory());
+        Shop bookshop = new Shop("Thalia", "1337");
+
+        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy);
+        Book gatesBio = new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography);
+
+        Customer steve = new Customer("Steve Jobs", "1984");
+
+        bookshop.addBook(narnia);
+        bookshop.addBook(gatesBio);
+        System.out.println("Sales figure is: " + bookshop.getBalance());
+        System.out.println("Inventory is: " + bookshop.getInventory());
+        System.out.println();
+
+        steve.purchasesBook(gatesBio, bookshop);
+        System.out.println("Sales figure after sale: " + bookshop.getBalance());
+        System.out.println("Inventory after sale: " + bookshop.getInventory());
+
+        System.out.println();
+        System.out.println(steve.toString());
     }
     
 }

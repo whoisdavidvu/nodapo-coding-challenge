@@ -7,7 +7,7 @@ public class Customer {
 
     private String name;                // name of customer
     private ArrayList<Book> ownedBooks; // ArrayList of owned books
-    private BigDecimal currentBalance;         // amount of customer's balance
+    private BigDecimal currentBalance;  // amount of customer's balance
 
     // constructor of class Customer
     public Customer(String newName, String balanceAsString) {
@@ -33,6 +33,12 @@ public class Customer {
     // returns customer's balance
     public BigDecimal getBalance() {
         return currentBalance;
+    }
+
+    public void purchasesBook(Book acquiredBook, Shop shop) {
+        this.currentBalance = this.currentBalance.subtract(acquiredBook.getValue());
+        shop.soldBook(acquiredBook);
+        this.ownedBooks.add(acquiredBook);
     }
 
     @Override
