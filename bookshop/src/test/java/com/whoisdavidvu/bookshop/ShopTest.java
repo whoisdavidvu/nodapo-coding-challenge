@@ -154,4 +154,30 @@ public class ShopTest {
             bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Steve Jobs' Biography"))  
         );
     }
+
+    // tests if it finds books that dont overlap
+    @Test
+    public void matchingBooks_returnsFalse_ifNonMatchingBooksInput() {
+        Shop bookshop = new Shop("Thalia", "1337");
+        Shop secondshop = new Shop("Mayersche", "1024");
+
+        bookshop.addBook(new Book("Narnia", "19.99", 365, Genres.Fantasy));
+        bookshop.addBook(new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography));
+        bookshop.addBook(new Book("Steve Jobs' Biography", "49.99", 1024, Genres.Biography));
+        bookshop.addBook(new Book("Moby-Dick", "29.99", 599, Genres.Adventure));
+        bookshop.addBook(new Book("Odyssey", "19.99", 333, Genres.Adventure)); 
+
+        secondshop.addBook(new Book("Odyssey", "19.99", 333, Genres.Adventure));
+        secondshop.addBook(new Book("Bill Gates' Biography", "39.99", 512, Genres.Biography));
+        secondshop.addBook(new Book("Steve Jobs' Biography", "29.99", 1024, Genres.Biography));
+        secondshop.addBook(new Book("LOTR", "99.99", 1337, Genres.Fantasy));
+        
+        Assertions.assertEquals(bookshop.getThisList(secondshop).size(), bookshop.getOtherList(secondshop).size());
+
+        Assertions.assertFalse(
+            bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Narnia")) ||
+            bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("LOTR")) ||
+            bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Moby-Dick"))
+        );
+    }
 }
