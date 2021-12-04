@@ -58,7 +58,7 @@ public class Shop {
     public List<Book> filterBookByGenre(String genre) {
         //ArrayList<Book> filteredList = new ArrayList<Book>();
         List<Book> filteredList = currentInventory.stream()
-                                .filter(book -> book.getGenre().toString().contains(genre))
+                                .filter(book -> book.getGenre().toString().toUpperCase().contains(genre.toUpperCase()))
                                 .collect(Collectors.toList());
         if (filteredList.isEmpty()) {
             throw new Error("Can not find Books with desired genre.");
@@ -108,7 +108,7 @@ public class Shop {
         System.out.println();
         System.out.println(steve.toString()); */
 
-        System.out.println(bookshop.filterBookByGenre("Adventure"));
+        System.out.println(bookshop.filterBookByGenre("bio"));
         
     }
     
