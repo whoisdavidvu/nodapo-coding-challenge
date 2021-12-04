@@ -175,6 +175,12 @@ public class ShopTest {
         Assertions.assertEquals(bookshop.getThisList(secondshop).size(), bookshop.getOtherList(secondshop).size());
 
         Assertions.assertFalse(
+            bookshop.getThisList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Narnia")) ||
+            bookshop.getThisList(secondshop).stream().anyMatch(o -> o.getTitle().equals("LOTR")) ||
+            bookshop.getThisList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Moby-Dick"))
+        );
+
+        Assertions.assertFalse(
             bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Narnia")) ||
             bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("LOTR")) ||
             bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Moby-Dick"))
