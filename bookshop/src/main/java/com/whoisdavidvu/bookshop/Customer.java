@@ -36,7 +36,12 @@ public class Customer {
     }
 
     public void purchasesBook(Book acquiredBook, Shop shop) {
-        this.currentBalance = this.currentBalance.subtract(acquiredBook.getValue());
+        if (this.currentBalance.compareTo(acquiredBook.getValue()) >= 0) {
+            this.currentBalance = this.currentBalance.subtract(acquiredBook.getValue());
+        }
+        else {
+            throw new Error("Not enough funds to purchase item!");
+        }
         shop.soldBook(acquiredBook);
         this.ownedBooks.add(acquiredBook);
     }
