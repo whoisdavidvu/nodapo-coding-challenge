@@ -53,10 +53,11 @@ public class Book {
 
     @Override
     public String toString() {
-        return ("book name: " + this.getTitle() + "\n" + 
-                "book price: " + this.getValue() + "\n" + 
-                "book page count: " + this.getPageCount() + "\n" + 
-                "book genre: " + this.getGenre() + "\n");
+        return ("\n" + 
+                "book name: " + this.getTitle() + ", " + 
+                "book price: " + this.getValue() + ", " + 
+                "book page count: " + this.getPageCount() + ", " + 
+                "book genre: " + this.getGenre());
     }
 
 
