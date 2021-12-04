@@ -3,17 +3,14 @@ package com.whoisdavidvu.bookshop;
 import java.math.BigDecimal;
 
 public class Book {
-
-    // enum of possible genres
-    private enum Genre { Comedy, Horror, Action, Romance, Documentary, Thriller, Drama}
     
     private String title;       // title of book
     private BigDecimal bookValue;   // price of book
     private int pageCount;      // number of pages in the book
-    private Genre genre;        // genre of book
+    private Genres genre;        // genre of book
 
     // constructor of class Book
-    public Book(String newTitle, String priceAsString, int numberOfPages, Genre bookGenre) {
+    public Book(String newTitle, String priceAsString, int numberOfPages, Genres bookGenre) {
         this.title = newTitle;
         this.bookValue = new BigDecimal(priceAsString);
         this.pageCount = numberOfPages;
@@ -36,7 +33,7 @@ public class Book {
     }
 
     // returns the genre of the book
-    public Genre getGenre() {
+    public Genres getGenre() {
         return genre;
     }
 
@@ -45,7 +42,7 @@ public class Book {
 
     // main method to test basic functionality
     public static void main (String[] args) {
-        Book narnia = new Book("Narnia", "19.99", 365, Genre.Thriller);
+        Book narnia = new Book("Narnia", "19.99", 365, Genres.Thriller);
         System.out.println("The title of the book is: " + narnia.getTitle());
         System.out.println("The price of the book is: " + narnia.getValue());
         System.out.println("The page count of the book is: " + narnia.getPageCount());
