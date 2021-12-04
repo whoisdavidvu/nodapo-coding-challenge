@@ -2,11 +2,11 @@ package com.whoisdavidvu.bookshop;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 public class Shop {
@@ -75,7 +75,46 @@ public class Shop {
         this.currentInventory = new ArrayList<Book>(new HashSet<Book>(this.currentInventory));
     }
 
+    
+    // returns list of same books as other shop
+    public List<Book> getThisList(Shop otherShop) {
+        return this.currentInventory.stream()
+                .filter(two -> otherShop.currentInventory.stream()
+                .anyMatch(one -> one.getTitle().equals(two.getTitle())
+                    && (one.getPageCount() == two.getPageCount())
+                    && one.getGenre().equals(two.getGenre())))
+                .collect(Collectors.toList());
+    }
 
+    // returns list of same books as this shop
+    public List<Book> getOtherList(Shop otherShop) {
+        return otherShop.currentInventory.stream()
+                .filter(one -> this.currentInventory.stream()
+                .anyMatch(two -> one.getTitle().equals(two.getTitle())
+                    && (one.getPageCount() == two.getPageCount())
+                    && one.getGenre().equals(two.getGenre())))
+                .collect(Collectors.toList());
+    }
+
+    // displays same books in two different shops
+    public void printMatchingList(Shop otherShop) {
+        /* List<Book> sharedList1 = this.currentInventory.stream()
+                                    .filter(two -> otherShop.currentInventory.stream()
+                                    .anyMatch(one -> one.getTitle().equals(two.getTitle())
+                                        && (one.getPageCount() == two.getPageCount())
+                                        && one.getGenre().equals(two.getGenre())))
+                                        .collect(Collectors.toList());
+        
+        List<Book> sharedList2 = otherShop.currentInventory.stream()
+                                        .filter(one -> this.currentInventory.stream()
+                                        .anyMatch(two -> one.getTitle().equals(two.getTitle())
+                                            && (one.getPageCount() == two.getPageCount())
+                                            && one.getGenre().equals(two.getGenre())))
+                                            .collect(Collectors.toList()); */
+        System.out.println("Matching books from " + this.shopName + ": " + getThisList(otherShop));
+        System.out.println();
+        System.out.println("Matching books from " + otherShop.shopName + ": " + getOtherList(otherShop));
+    }
 
 
     // main method for testing basic functionality
@@ -83,9 +122,9 @@ public class Shop {
         Shop bookshop = new Shop("Thalia", "1337");
 
         Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy);
-        Book gatesBio = new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography);
-        Book gatesBioDuplicate = new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography);
-        Book jobsBio = new Book("Steve Jobs' Biography", "49.99", 1024, Genres.Biography);
+        Book gatesBio = new Book("Bill Gates' Biography", "69.99", 512, Genres.Biography);
+        Book gatesBioDuplicate = new Book("Bill Gates' Biography", "79.99", 512, Genres.Biography);
+        Book jobsBio = new Book("Steve Jobs' Biography", "79.99", 1024, Genres.Biography);
         Book mobydick = new Book("Moby-Dick", "29.99", 599, Genres.Adventure);
         Book odyssey = new Book("Odyssey", "19.99", 333, Genres.Adventure);
 
@@ -94,8 +133,8 @@ public class Shop {
         
         bookshop.addBook(narnia);
         bookshop.addBook(gatesBio);
-        bookshop.addBook(gatesBioDuplicate);
-        bookshop.addBook(jobsBio);
+        //bookshop.addBook(gatesBioDuplicate);
+        //bookshop.addBook(jobsBio);
         bookshop.addBook(jobsBio);
         bookshop.addBook(mobydick);
         bookshop.addBook(odyssey);
@@ -126,13 +165,20 @@ public class Shop {
         /* // 2. finds adventure books
         System.out.println(bookshop.filterBookByGenre("bio")); */
 
-        // 3. finds duplicate books and deletes them
+        /* // 3. finds duplicate books and deletes them
         System.out.println(bookshop.getInventory());
         bookshop.findDeleteDuplicates();
         System.out.println();
-        System.out.println(bookshop.getInventory());
+        System.out.println(bookshop.getInventory()); */
 
-        
+        // 4. output 2 lists to compare the identical books between two shops
+        Shop secondshop = new Shop("Mayersche", "1024");
+        secondshop.addBook(odyssey);
+        secondshop.addBook(new Book("Bill Gates' Biography", "39.99", 512, Genres.Biography));
+        secondshop.addBook(new Book("Steve Jobs' Biography", "29.99", 1024, Genres.Biography));
+        secondshop.addBook(new Book("LOTR", "99.99", 1337, Genres.Fantasy));
+        bookshop.printMatchingList(secondshop);
+
     }
     
 }

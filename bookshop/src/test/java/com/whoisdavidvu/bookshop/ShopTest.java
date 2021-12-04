@@ -113,7 +113,7 @@ public class ShopTest {
         bookshop.addBook(mobydick);
         bookshop.addBook(odyssey);
 
-        // set contains unique elements
+        // set contains unique elements, set should have smaller size if duplicates exist
         Set<Book> set = new HashSet<Book>(bookshop.getInventory());
         Assertions.assertTrue(set.size() < bookshop.getInventory().size());
         bookshop.findDeleteDuplicates();
@@ -121,5 +121,37 @@ public class ShopTest {
         Assertions.assertEquals(set.size(), bookshop.getInventory().size());
     }
 
-    
+    // tests if two shops have matching books
+    @Test
+    public void matchingBooks_returnsTrue_ifFoundMatchingBooks() {
+        Shop bookshop = new Shop("Thalia", "1337");
+        Shop secondshop = new Shop("Mayersche", "1024");
+
+        bookshop.addBook(new Book("Narnia", "19.99", 365, Genres.Fantasy));
+        bookshop.addBook(new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography));
+        bookshop.addBook(new Book("Steve Jobs' Biography", "49.99", 1024, Genres.Biography));
+        bookshop.addBook(new Book("Moby-Dick", "29.99", 599, Genres.Adventure));
+        bookshop.addBook(new Book("Odyssey", "19.99", 333, Genres.Adventure)); 
+
+        secondshop.addBook(new Book("Odyssey", "19.99", 333, Genres.Adventure));
+        secondshop.addBook(new Book("Bill Gates' Biography", "39.99", 512, Genres.Biography));
+        secondshop.addBook(new Book("Steve Jobs' Biography", "29.99", 1024, Genres.Biography));
+        secondshop.addBook(new Book("LOTR", "99.99", 1337, Genres.Fantasy));
+        
+        Assertions.assertEquals(bookshop.getThisList(secondshop).size(), bookshop.getOtherList(secondshop).size());
+
+        // checks bookshop's list for 3 books that should match
+        Assertions.assertTrue(
+            bookshop.getThisList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Odyssey")) && 
+            bookshop.getThisList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Bill Gates' Biography")) &&
+            bookshop.getThisList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Steve Jobs' Biography"))  
+        );
+
+        // checks secondshop's list for the same 3 books that should match
+        Assertions.assertTrue(
+            bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Odyssey")) && 
+            bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Bill Gates' Biography")) &&
+            bookshop.getOtherList(secondshop).stream().anyMatch(o -> o.getTitle().equals("Steve Jobs' Biography"))  
+        );
+    }
 }
