@@ -118,7 +118,7 @@ public class ShopTest {
         Assertions.assertTrue(set.size() < bookshop.getInventory().size());
         bookshop.findDeleteDuplicates();
         Assertions.assertFalse(set.size() < bookshop.getInventory().size());
-        Assertions.assertTrue(set.size() == bookshop.getInventory().size());
+        Assertions.assertEquals(set.size(), bookshop.getInventory().size());
     }
 
     
