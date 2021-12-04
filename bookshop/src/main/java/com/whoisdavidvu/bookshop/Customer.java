@@ -2,11 +2,12 @@ package com.whoisdavidvu.bookshop;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Customer {
 
     private String name;                // name of customer
-    private ArrayList<Book> ownedBooks; // ArrayList of owned books
+    private List<Book> ownedBooks; // ArrayList of owned books
     private BigDecimal currentBalance;  // amount of customer's balance
 
     // constructor of class Customer
@@ -29,7 +30,7 @@ public class Customer {
     }
 
     // returns Arraylist of customer's owned books
-    public ArrayList<Book> getBooks() {
+    public List<Book> getBooks() {
         return ownedBooks;
     }
 

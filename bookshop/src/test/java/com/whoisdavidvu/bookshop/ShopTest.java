@@ -81,7 +81,7 @@ public class ShopTest {
         bookshop.addBook(mobydick);
         bookshop.addBook(odyssey);
 
-        List<Book> filteredList = bookshop.filterBookByGenre("Adventure");
+        List<Book> filteredList = bookshop.filterBookByGenre("adventure");
         
         // function should only find Moby Dick and Odyssey
         Assertions.assertTrue(filteredList.contains(mobydick));

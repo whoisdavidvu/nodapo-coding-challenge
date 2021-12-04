@@ -2,14 +2,18 @@ package com.whoisdavidvu.bookshop;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Shop {
 
     private String shopName;                    // name of bookshop
     private BigDecimal totalCash;              // name of total sales figure
-    private ArrayList<Book> currentInventory;   // list of current book inventory
+    private List<Book> currentInventory;   // list of current book inventory
 
     // constructor of class Shop
     public Shop(String newName, String cashAsString) throws IllegalArgumentException {
@@ -38,7 +42,7 @@ public class Shop {
     }
 
     // returns ArrayList of book inventory
-    public ArrayList<Book> getInventory() {
+    public List<Book> getInventory() {
         return currentInventory;
     }
 
@@ -66,12 +70,12 @@ public class Shop {
         return filteredList;
     }
 
-    // filters out and returns books with a desired genre (this version does not allocate memory)
-    /* public List<Book> filterBookByGenre(String genre) {
-        return currentInventory.stream()
-                                .filter(book -> book.getGenre().toString().contains(genre))
-                                .collect(Collectors.toList());
-    } */
+    // finds duplicate books and deletes them
+    public void findDeleteDuplicates() {
+        this.currentInventory = new ArrayList<Book>(new HashSet<Book>(this.currentInventory));
+    }
+
+
 
 
     // main method for testing basic functionality
@@ -80,6 +84,7 @@ public class Shop {
 
         Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy);
         Book gatesBio = new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography);
+        Book gatesBioDuplicate = new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography);
         Book jobsBio = new Book("Steve Jobs' Biography", "49.99", 1024, Genres.Biography);
         Book mobydick = new Book("Moby-Dick", "29.99", 599, Genres.Adventure);
         Book odyssey = new Book("Odyssey", "19.99", 333, Genres.Adventure);
@@ -89,12 +94,22 @@ public class Shop {
         
         bookshop.addBook(narnia);
         bookshop.addBook(gatesBio);
+        bookshop.addBook(gatesBioDuplicate);
+        bookshop.addBook(jobsBio);
         bookshop.addBook(jobsBio);
         bookshop.addBook(mobydick);
         bookshop.addBook(odyssey);
 
+        /* bookshop.addBook(new Book("Narnia", "19.99", 365, Genres.Fantasy));
+        bookshop.addBook(new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography));
+        bookshop.addBook(new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography));
+        bookshop.addBook(new Book("Steve Jobs' Biography", "49.99", 1024, Genres.Biography));
+        bookshop.addBook(new Book("Moby-Dick", "29.99", 599, Genres.Adventure));
+        bookshop.addBook(new Book("Odyssey", "19.99", 333, Genres.Adventure));
+        bookshop.addBook(new Book("Steve Jobs' Biography", "49.99", 1024, Genres.Biography)); */
 
-        /* // before purchase 
+        /* // 1. customer purchases book
+        // before purchase 
         System.out.println("Sales figure is: " + bookshop.getBalance());
         System.out.println("Inventory is: " + bookshop.getInventory());
         System.out.println();
@@ -108,7 +123,15 @@ public class Shop {
         System.out.println();
         System.out.println(steve.toString()); */
 
-        System.out.println(bookshop.filterBookByGenre("bio"));
+        /* // 2. finds adventure books
+        System.out.println(bookshop.filterBookByGenre("bio")); */
+
+        // 3. finds duplicate books and deletes them
+        System.out.println(bookshop.getInventory());
+        bookshop.findDeleteDuplicates();
+        System.out.println();
+        System.out.println(bookshop.getInventory());
+
         
     }
     
