@@ -16,9 +16,13 @@ public class Shop {
         this.currentInventory = new ArrayList<Book>();
 
         if (shopName == null || newName.trim().isEmpty()) {
-            throw new IllegalArgumentException("Name is invalid!");
+            throw new IllegalArgumentException("Shop must have a name!");
         }
-
+        // unsure if cash can be negative
+        if (totalCash.compareTo(BigDecimal.ZERO) < 0) {
+            System.out.println("Warning: Shop's cash is negative!");
+            //throw new IllegalArgumentException("Account balance can not be negative!");
+        } 
     }
 
     // returns shop name
@@ -40,7 +44,7 @@ public class Shop {
 
     // main method for testing basic functionality
     public static void main (String[] args) {
-        Shop bookshop = new Shop("Thalia", "1337");
+        Shop bookshop = new Shop("Thalia", "-2");
         System.out.println("First shop's name is: " + bookshop.getShopName());
         System.out.println("First shop's sales figure is: " + bookshop.getBalance());
         System.out.println("First shop's inventory is: " + bookshop.getInventory());

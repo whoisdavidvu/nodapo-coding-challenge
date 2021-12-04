@@ -14,6 +14,10 @@ public class Customer {
         this.name = newName;
         this.ownedBooks = new ArrayList<Book>();
         this.currentBalance = new BigDecimal(balanceAsString);
+
+        if (currentBalance.compareTo(BigDecimal.ZERO) < 0) {
+            throw new IllegalArgumentException("Account balance can not be negative!");
+        }
     }
 
     // returns customer's name 
@@ -43,7 +47,7 @@ public class Customer {
 
     // main method to test basic functionality
     public static void main (String[] args) {
-        Customer bill = new Customer("Bill Gates", "1000.00");
+        Customer bill = new Customer("Bill Gates", "1337");
         System.out.println(bill.toString());
     }
     

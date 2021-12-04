@@ -11,10 +11,21 @@ public class Book {
 
     // constructor of class Book
     public Book(String newTitle, String priceAsString, int numberOfPages, Genres bookGenre) {
+        
         this.title = newTitle;
         this.bookValue = new BigDecimal(priceAsString);
         this.pageCount = numberOfPages;
         this.genre = bookGenre;
+         
+        if (newTitle.trim().isEmpty()) {
+            throw new IllegalArgumentException("Title is invalid!");
+        }
+        if (bookValue.compareTo(BigDecimal.ZERO) < 0)  {
+            throw new IllegalArgumentException("Price can not be negative!");
+        }
+        if (pageCount <= 0 || numberOfPages <= 0) {
+            throw new IllegalArgumentException("Book has to have pages!");
+        }
     }
 
     // returns the title of the book
@@ -42,7 +53,7 @@ public class Book {
         return ("book name: " + this.getTitle() + "\n" + 
                 "book price: " + this.getValue() + "\n" + 
                 "book page count: " + this.getPageCount() + "\n" + 
-                "book genre: " + this.getGenre());
+                "book genre: " + this.getGenre() + "\n");
     }
 
 
@@ -50,7 +61,7 @@ public class Book {
 
     // main method to test basic functionality
     public static void main (String[] args) {
-        Book narnia = new Book("Narnia", "19.99", 365, Genres.Thriller);
+        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy);
         System.out.println(narnia.toString());
     }
 }
