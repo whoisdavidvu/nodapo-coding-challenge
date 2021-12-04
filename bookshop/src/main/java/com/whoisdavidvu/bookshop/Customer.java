@@ -31,15 +31,20 @@ public class Customer {
         return currentBalance;
     }
 
+    @Override
+    public String toString() {
+        return ("customer name: " + this.getName() + "\n" + 
+                "customer's books: " + this.getBooks() + "\n" + 
+                "customer's balance: " + this.getBalance());
+    }
+
 
 
 
     // main method to test basic functionality
     public static void main (String[] args) {
         Customer bill = new Customer("Bill Gates", "1000.00");
-        System.out.println("First customer's name: " + bill.getName());
-        System.out.println("First customer's balance: " + bill.getBalance());
-        System.out.println("First customer's owned books: " + bill.getBooks());
+        System.out.println(bill.toString());
     }
     
 }

@@ -37,15 +37,20 @@ public class Book {
         return genre;
     }
 
+    @Override
+    public String toString() {
+        return ("book name: " + this.getTitle() + "\n" + 
+                "book price: " + this.getValue() + "\n" + 
+                "book page count: " + this.getPageCount() + "\n" + 
+                "book genre: " + this.getGenre());
+    }
+
 
 
 
     // main method to test basic functionality
     public static void main (String[] args) {
         Book narnia = new Book("Narnia", "19.99", 365, Genres.Thriller);
-        System.out.println("The title of the book is: " + narnia.getTitle());
-        System.out.println("The price of the book is: " + narnia.getValue());
-        System.out.println("The page count of the book is: " + narnia.getPageCount());
-        System.out.println("The genre of the book is: " + narnia.getGenre());
+        System.out.println(narnia.toString());
     }
 }
