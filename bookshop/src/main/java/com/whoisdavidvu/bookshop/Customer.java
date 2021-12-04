@@ -18,6 +18,9 @@ public class Customer {
         if (currentBalance.compareTo(BigDecimal.ZERO) < 0) {
             throw new IllegalArgumentException("Account balance can not be negative!");
         }
+        if (this.name.isEmpty() || newName.isEmpty()) {
+            throw new IllegalArgumentException("Customer must have a name!");
+        }
     }
 
     // returns customer's name 
