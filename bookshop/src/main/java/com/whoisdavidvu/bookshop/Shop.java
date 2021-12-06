@@ -46,7 +46,9 @@ public class Shop {
 
     // simply adds a book to the inventory arraylist
     public void addBook(Book b) {
-        this.currentInventory.add(b);
+        if (b.checkISBN13()) {
+            this.currentInventory.add(b);
+        }
     }
 
     // adds value of sold book into cash and removes book from inventory
@@ -78,7 +80,8 @@ public class Shop {
                 .filter(two -> otherShop.currentInventory.stream()
                 .anyMatch(one -> one.getTitle().equals(two.getTitle())
                     && (one.getPageCount() == two.getPageCount())
-                    && one.getGenre().equals(two.getGenre())))
+                    && one.getGenre().equals(two.getGenre())
+                    && one.getISBN().equals(two.getISBN())))
                 .collect(Collectors.toList());
     }
 
@@ -88,7 +91,8 @@ public class Shop {
                 .filter(one -> this.currentInventory.stream()
                 .anyMatch(two -> one.getTitle().equals(two.getTitle())
                     && (one.getPageCount() == two.getPageCount())
-                    && one.getGenre().equals(two.getGenre())))
+                    && one.getGenre().equals(two.getGenre())
+                    && one.getISBN().equals(two.getISBN())))
                 .collect(Collectors.toList());
     }
 
@@ -104,35 +108,40 @@ public class Shop {
     public static void main (String[] args) {
         Shop bookshop = new Shop("Thalia", "1337");
 
-        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy);
-        Book gatesBio = new Book("Bill Gates' Biography", "69.99", 512, Genres.Biography);
-        Book gatesBioDuplicate = new Book("Bill Gates' Biography", "79.99", 512, Genres.Biography);
-        Book jobsBio = new Book("Steve Jobs' Biography", "79.99", 1024, Genres.Biography);
-        Book mobydick = new Book("Moby-Dick", "29.99", 599, Genres.Adventure);
-        Book odyssey = new Book("Odyssey", "19.99", 333, Genres.Adventure);
+        String validISBN = "978-3608963762";
+
+        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, validISBN);
+        Book gatesBio = new Book("Bill Gates' Biography", "69.99", 512, Genres.Biography, validISBN);
+        Book gatesBioDuplicate = new Book("Bill Gates' Biography", "79.99", 512, Genres.Biography, validISBN);
+        Book jobsBio = new Book("Steve Jobs' Biography", "79.99", 1024, Genres.Biography, validISBN);
+        Book mobydick = new Book("Moby-Dick", "29.99", 599, Genres.Adventure, validISBN);
+        Book odyssey = new Book("Odyssey", "19.99", 333, Genres.Adventure, validISBN);
+        Book lotr = new Book("LOTR", "99.99", 1337, Genres.Fantasy, validISBN);
+
+        // with invalid ISBNs
+        /* Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, "978-3608963762");
+        Book gatesBio = new Book("Bill Gates' Biography", "69.99", 512, Genres.Biography, "978-3442267747");
+        Book gatesBioDuplicate = new Book("Bill Gates' Biography", "79.99", 512, Genres.Biography, "978-3442267747");
+        Book jobsBio = new Book("Steve Jobs' Biography", "79.99", 1024, Genres.Biography, "978-758245159");
+        Book mobydick = new Book("Moby-Dick", "29.99", 599, Genres.Adventure, "978-3841335180");
+        Book odyssey = new Book("Odyssey", "19.99", 333, Genres.Adventure, "978-3442267819");
+        Book lotr = new Book("LOTR", "99.99", 1337, Genres.Fantasy, "978-0007136582"); */
 
         Customer steve = new Customer("Steve Jobs", "1984");
 
         
         bookshop.addBook(narnia);
         bookshop.addBook(gatesBio);
-        //bookshop.addBook(gatesBioDuplicate);
-        //bookshop.addBook(jobsBio);
+        bookshop.addBook(gatesBioDuplicate);
+        bookshop.addBook(jobsBio);
         bookshop.addBook(jobsBio);
         bookshop.addBook(mobydick);
         bookshop.addBook(odyssey);
+        bookshop.addBook(lotr);
 
-        /* bookshop.addBook(new Book("Narnia", "19.99", 365, Genres.Fantasy));
-        bookshop.addBook(new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography));
-        bookshop.addBook(new Book("Bill Gates' Biography", "49.99", 512, Genres.Biography));
-        bookshop.addBook(new Book("Steve Jobs' Biography", "49.99", 1024, Genres.Biography));
-        bookshop.addBook(new Book("Moby-Dick", "29.99", 599, Genres.Adventure));
-        bookshop.addBook(new Book("Odyssey", "19.99", 333, Genres.Adventure));
-        bookshop.addBook(new Book("Steve Jobs' Biography", "49.99", 1024, Genres.Biography)); */
-
-        /* // 1. customer purchases book
+        // 1. customer purchases book
         // before purchase 
-        System.out.println("Sales figure is: " + bookshop.getBalance());
+        /* System.out.println("Sales figure is: " + bookshop.getBalance());
         System.out.println("Inventory is: " + bookshop.getInventory());
         System.out.println();
 
@@ -145,22 +154,26 @@ public class Shop {
         System.out.println();
         System.out.println(steve.toString()); */
 
-        /* // 2. finds adventure books
-        System.out.println(bookshop.filterBookByGenre("bio")); */
+        // 2. finds adventure books
+        /* System.out.println(bookshop.filterBookByGenre("adventure")); */
 
-        /* // 3. finds duplicate books and deletes them
+        // 3. finds duplicate books and deletes them
+        /* System.out.print("Before: ");
         System.out.println(bookshop.getInventory());
         bookshop.findDeleteDuplicates();
-        System.out.println();
+        System.out.print("After: ");
         System.out.println(bookshop.getInventory()); */
 
         // 4. output 2 lists to compare the identical books between two shops
         Shop secondshop = new Shop("Mayersche", "1024");
         secondshop.addBook(odyssey);
-        secondshop.addBook(new Book("Bill Gates' Biography", "39.99", 512, Genres.Biography));
-        secondshop.addBook(new Book("Steve Jobs' Biography", "29.99", 1024, Genres.Biography));
-        secondshop.addBook(new Book("LOTR", "99.99", 1337, Genres.Fantasy));
+        secondshop.addBook(new Book("Bill Gates' Biography", "39.99", 512, Genres.Biography, "978-3442267747"));
+        secondshop.addBook(new Book("Steve Jobs' Biography", "29.99", 1024, Genres.Biography, "978-3841335180"));
+        secondshop.addBook(lotr);
         bookshop.printMatchingList(secondshop);
+
+        // 5. addBook should not add books with invalid ISBN
+        /* System.out.println(bookshop.getInventory()); */
 
     }
     
