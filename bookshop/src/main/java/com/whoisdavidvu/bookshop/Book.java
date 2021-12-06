@@ -1,7 +1,6 @@
 package com.whoisdavidvu.bookshop;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 
 public class Book {
     
@@ -34,7 +33,7 @@ public class Book {
         }
         // in case creation of books with invalid ISBN-13 can throw an IAEX if needed
         if (checkISBN13() == false) {
-            System.out.println("Warning: Book " + "\"" + this.title + "\"" + " has invalid ISBN-13 and has not been added!");
+            System.out.println("Warning: Book " + "\"" + this.title + "\"" + " has invalid ISBN-13!");
         }
     }
 
