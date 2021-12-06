@@ -13,7 +13,7 @@ public class BookTest {
     @Test
     public void creatingBook_throwsIAEX_ifTitleEmpty() {
         assertThrows(IllegalArgumentException.class, ()->{
-            Book narnia = new Book("", "19.99", 365, Genres.Fantasy);
+            Book narnia = new Book("", "19.99", 365, Genres.Fantasy, "978-3608963762");
         });
     }
 
@@ -21,7 +21,7 @@ public class BookTest {
     @Test
     public void creatingBook_throwsIAEX_ifPriceNegative() {
         assertThrows(IllegalArgumentException.class, ()->{
-            Book narnia = new Book("Narnia", "-19.99", 365, Genres.Fantasy);
+            Book narnia = new Book("Narnia", "-19.99", 365, Genres.Fantasy, "978-3608963762");
         });
     }
 
@@ -29,7 +29,7 @@ public class BookTest {
     @Test
     public void creatingBook_throwsIAEX_ifPriceHasTooManyDigits() {
         assertThrows(IllegalArgumentException.class, ()->{
-            Book narnia = new Book("Narnia", "19.999", 365, Genres.Fantasy);
+            Book narnia = new Book("Narnia", "19.999", 365, Genres.Fantasy, "978-3608963762");
         });
     }
 
@@ -37,11 +37,13 @@ public class BookTest {
     @Test
     public void creatingBook_throwsIAEX_ifPageCountInvalid() {
         assertThrows(IllegalArgumentException.class, ()->{
-            Book narnia = new Book("Narnia", "19.99", 0, Genres.Fantasy);
+            Book narnia = new Book("Narnia", "19.99", 0, Genres.Fantasy, "978-3608963762");
         });
         assertThrows(IllegalArgumentException.class, ()->{
-            Book narnia = new Book("Narnia", "19.99", -1, Genres.Fantasy);
+            Book narnia = new Book("Narnia", "19.99", -1, Genres.Fantasy, "978-3608963762");
         });
     }
+
+    // add ISBNtest
 
 }

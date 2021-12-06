@@ -15,7 +15,7 @@ public class CustomerTest {
         assertThrows(Error.class, ()->{
             Customer bill = new Customer("Bill Gates", "5");
             Shop bookshop = new Shop("Thalia", "1337");
-            Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy);
+            Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, "978-3608963762");
             bookshop.addBook(narnia);
             bill.purchasesBook(narnia, bookshop);
         });
@@ -27,7 +27,7 @@ public class CustomerTest {
         Customer bill = new Customer("Bill Gates", "2000");
         BigDecimal oldBalance = bill.getBalance();
         Shop bookshop = new Shop("Thalia", "1337");
-        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy);
+        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, "978-3608963762");
         bookshop.addBook(narnia);
         bill.purchasesBook(narnia, bookshop);
         Assertions.assertEquals(oldBalance.subtract(narnia.getValue()), bill.getBalance());
@@ -38,7 +38,7 @@ public class CustomerTest {
     public void purchase_returnsTrue_ifNewBookExists() {
         Customer bill = new Customer("Bill Gates", "2000");
         Shop bookshop = new Shop("Thalia", "1337");
-        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy);
+        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, "978-3608963762");
         bookshop.addBook(narnia);
         bill.purchasesBook(narnia, bookshop);
         Assertions.assertTrue(bill.getBooks().contains(narnia));
