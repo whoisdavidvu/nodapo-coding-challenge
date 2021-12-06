@@ -44,6 +44,20 @@ public class BookTest {
         });
     }
 
-    // add ISBNtest
+    // returns trus if new book has valid ISBN
+    @Test
+    public void creatingBook_returnsTrue_ifISBNValid() {
+        String validISBN = "978-3608963762";
+        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, validISBN);
+        Assertions.assertTrue(narnia.checkISBN13());    
+    }
 
+    // returns false if new book has invalid ISBN
+    @Test
+    public void creatingBook_returnsFalse_ifISBNInvalid() {
+        String invalidISBN = "978-3442267747";
+        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, invalidISBN);
+        Assertions.assertFalse(narnia.checkISBN13());
+    }
+    
 }
