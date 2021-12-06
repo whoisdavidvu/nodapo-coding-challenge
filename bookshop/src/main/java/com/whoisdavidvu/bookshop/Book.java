@@ -32,10 +32,10 @@ public class Book {
         if (pageCount <= 0 || numberOfPages <= 0) {
             throw new IllegalArgumentException("Book has to have pages!");
         }
-        // in case creation of books with invalid ISBN-13 should throw an error
-        /* if (checkISBN13() == false) {
-            throw new IllegalArgumentException("Book has invalid ISBN-13!");
-        } */
+        // in case creation of books with invalid ISBN-13 can throw an IAEX if needed
+        if (checkISBN13() == false) {
+            System.out.println("Warning: Book " + "\"" + this.title + "\"" + " has invalid ISBN-13 and has not been added!");
+        }
     }
 
     // returns the title of the book
@@ -167,7 +167,7 @@ public class Book {
 
         // invalid because length not 13
         System.out.println(jobsBio.checkISBN13());
-
+        
         System.out.println(mobydick.checkISBN13());
         System.out.println(odyssey.checkISBN13());
         System.out.println(lotr.checkISBN13());
