@@ -110,22 +110,23 @@ public class Shop {
 
         String validISBN = "978-3608963762";
 
-        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, validISBN);
+        // all ISBN valid
+        /* Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, validISBN);
         Book gatesBio = new Book("Bill Gates' Biography", "69.99", 512, Genres.Biography, validISBN);
         Book gatesBioDuplicate = new Book("Bill Gates' Biography", "79.99", 512, Genres.Biography, validISBN);
         Book jobsBio = new Book("Steve Jobs' Biography", "79.99", 1024, Genres.Biography, validISBN);
         Book mobydick = new Book("Moby-Dick", "29.99", 599, Genres.Adventure, validISBN);
         Book odyssey = new Book("Odyssey", "19.99", 333, Genres.Adventure, validISBN);
-        Book lotr = new Book("LOTR", "99.99", 1337, Genres.Fantasy, validISBN);
+        Book lotr = new Book("LOTR", "99.99", 1337, Genres.Fantasy, validISBN); */
 
-        // with invalid ISBNs
-        /* Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, "978-3608963762");
+        // For 5. with invalid ISBNs mixed in
+        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, "978-3608963762");
         Book gatesBio = new Book("Bill Gates' Biography", "69.99", 512, Genres.Biography, "978-3442267747");
         Book gatesBioDuplicate = new Book("Bill Gates' Biography", "79.99", 512, Genres.Biography, "978-3442267747");
         Book jobsBio = new Book("Steve Jobs' Biography", "79.99", 1024, Genres.Biography, "978-758245159");
         Book mobydick = new Book("Moby-Dick", "29.99", 599, Genres.Adventure, "978-3841335180");
         Book odyssey = new Book("Odyssey", "19.99", 333, Genres.Adventure, "978-3442267819");
-        Book lotr = new Book("LOTR", "99.99", 1337, Genres.Fantasy, "978-0007136582"); */
+        Book lotr = new Book("LOTR", "99.99", 1337, Genres.Fantasy, "978-0007136582");
 
         Customer steve = new Customer("Steve Jobs", "1984");
 
@@ -165,16 +166,15 @@ public class Shop {
         System.out.println(bookshop.getInventory()); */
 
         // 4. output 2 lists to compare the identical books between two shops
-        Shop secondshop = new Shop("Mayersche", "1024");
+        /* Shop secondshop = new Shop("Mayersche", "1024");
         secondshop.addBook(odyssey);
         secondshop.addBook(new Book("Bill Gates' Biography", "39.99", 512, Genres.Biography, "978-3442267747"));
         secondshop.addBook(new Book("Steve Jobs' Biography", "29.99", 1024, Genres.Biography, "978-3841335180"));
         secondshop.addBook(lotr);
-        bookshop.printMatchingList(secondshop);
+        bookshop.printMatchingList(secondshop); */
 
         // 5. addBook should not add books with invalid ISBN
-        /* System.out.println(bookshop.getInventory()); */
-
+        System.out.println(bookshop.getInventory());
     }
     
 }
