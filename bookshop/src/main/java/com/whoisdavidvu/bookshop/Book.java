@@ -138,10 +138,11 @@ public class Book {
     @Override
     public String toString() {
         return ("\n" + 
-                "book name: " + this.getTitle() + ", " + 
-                "book price: " + this.getValue() + ", " + 
-                "book page count: " + this.getPageCount() + ", " + 
-                "book genre: " + this.getGenre());
+                "name: " + this.getTitle() + ", " + 
+                "price: " + this.getValue() + ", " + 
+                "page count: " + this.getPageCount() + ", " + 
+                "genre: " + this.getGenre() + ", " + 
+                "isbn-13: " + this.getISBN());
     }
 
 
@@ -166,7 +167,7 @@ public class Book {
 
         // invalid because length not 13
         System.out.println(jobsBio.checkISBN13());
-        
+
         System.out.println(mobydick.checkISBN13());
         System.out.println(odyssey.checkISBN13());
         System.out.println(lotr.checkISBN13());
