@@ -7,7 +7,7 @@
 Create a bookshop with following functions:
 
 - A customer should be able to buy and pay for a specific book which then gets removed from the shop's book list / library and added to the customer's list of owned books.
-- A customer should be able to filter out books so that the program only shows books with a certain genre. 
+- A customer should be able to filter out books so that the program only shows books with a certain genre.
 - The shop should be able to delete duplicate books from the library.
 - A customer should be able to find out if two book shops have the same books offered and the program should show a view so that the customer can compare the output.
 - The shop should only be able to add books if the ISBN-13 of the book is valid. If the ISBN is not valid, the shop should not add the book into the library / list.
