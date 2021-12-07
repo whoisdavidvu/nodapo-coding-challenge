@@ -21,6 +21,8 @@ To run the program for testing its functionality:
 - Navigate into the directory ```bookshop``` and build the files by running ```mvn compile```
 - When compile finished, run ```java -cp target/classes com.whoisdavidvu.bookshop.Main``` to run the main class.
 
+Or simply open the cloned directory in VSCode to run and test the files from within the editor.
+
 Comment out the certain lines of code in the ```Main.java``` file to try out the functions according to the required tasks above.
 
 ## Tests
