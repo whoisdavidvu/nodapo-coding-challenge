@@ -24,3 +24,6 @@ hs_err_pid*
 
 # ignore .DS_Store
 .DS_Store
+
+# ignore target compiled folder
+/bookshop/target
