@@ -14,7 +14,7 @@ public class Main {
         Book odyssey = new Book("Odyssey", "19.99", 333, Genres.Adventure, validISBN);
         Book lotr = new Book("LOTR", "99.99", 1337, Genres.Fantasy, validISBN);
 
-        // uncomment For 5. task with invalid ISBNs mixed in
+        // uncomment for task 5 with invalid ISBNs mixed in
         /* Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, "978-3608963762");
         Book gatesBio = new Book("Bill Gates' Biography", "69.99", 512, Genres.Biography, "978-3442267747");
         Book gatesBioDuplicate = new Book("Bill Gates' Biography", "79.99", 512, Genres.Biography, "978-3442267747");
@@ -65,7 +65,7 @@ public class Main {
         System.out.println(bookshop.getInventory()); */
 
         // 4. output 2 lists to compare the identical books between two shops
-        // bookshop.printMatchingList(secondshop);
+        bookshop.printMatchingList(secondshop);
 
         // 5. addBook should not add books with invalid ISBN
         // System.out.println(bookshop.getInventory());
