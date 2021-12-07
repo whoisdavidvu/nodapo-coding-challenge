@@ -11,7 +11,7 @@ Create a bookshop with following functions:
 
 ## Usage
 To run the program for testing its functionality:
-- Make sure Java and Maven are installed on your System.
+- Make sure Java and Maven are installed on your System. To install Maven via homebrew, run ```homebrew install maven```.
 - Clone this repository using ```git clone```.
 - Navigate into the directory ```bookshop``` and build the files by running ```mvn compile```
 - When compile finished, run ```java -cp target/classes com.whoisdavidvu.bookshop.Main``` to run the main class.
