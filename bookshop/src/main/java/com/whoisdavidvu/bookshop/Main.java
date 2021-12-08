@@ -1,5 +1,5 @@
 package com.whoisdavidvu.bookshop;
-
+// main class to test specific functionality of tasks if desired
 public class Main {
     public static void main (String[] args) {
         Shop bookshop = new Shop("Thalia", "1337");
