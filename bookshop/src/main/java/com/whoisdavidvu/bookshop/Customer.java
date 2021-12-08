@@ -56,14 +56,4 @@ public class Customer {
                 "customer's books: " + this.getBooks() + "\n" + 
                 "customer's balance: " + this.getBalance());
     }
-
-
-
-
-    // main method to test basic functionality
-    public static void main (String[] args) {
-        Customer bill = new Customer("Bill Gates", "1337");
-        System.out.println(bill.toString());
-    }
-    
 }

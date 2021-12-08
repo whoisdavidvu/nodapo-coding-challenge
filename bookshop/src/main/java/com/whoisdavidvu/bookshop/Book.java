@@ -143,32 +143,4 @@ public class Book {
                 "genre: " + this.getGenre() + ", " + 
                 "isbn-13: " + this.getISBN());
     }
-
-
-
-
-    // main method to test basic functionality
-    public static void main (String[] args) {
-        Book narnia = new Book("Narnia", "19.99", 365, Genres.Fantasy, "978-3608963762");
-        Book gatesBio = new Book("Bill Gates' Biography", "69.99", 512, Genres.Biography, "978-3442267747");
-        Book jobsBio = new Book("Steve Jobs' Biography", "79.99", 1024, Genres.Biography, "978-758245159");
-        Book mobydick = new Book("Moby-Dick", "29.99", 599, Genres.Adventure, "978-3841335180");
-        Book odyssey = new Book("Odyssey", "19.99", 333, Genres.Adventure, "978-3442267819");
-        Book lotr = new Book("LOTR", "99.99", 1337, Genres.Fantasy, "978-0007136582");
-        
-        // 3*3 + 6*1 + 0*3 + 8*1 + 9*3 + 6*1 + 3*3 + 7*1 + 6*3 + 2*1
-        // = 92 -> valid
-        System.out.println(narnia.checkISBN13());
-        
-        // 3*3 + 4*1 + 4*3 + 2*1 + 2*3 + 6*1 + 7*3 + 7*1 + 4*3 + 7*1
-        // = 86 -> invalid
-        System.out.println(gatesBio.checkISBN13());
-
-        // invalid because length not 13
-        System.out.println(jobsBio.checkISBN13());
-        
-        System.out.println(mobydick.checkISBN13());
-        System.out.println(odyssey.checkISBN13());
-        System.out.println(lotr.checkISBN13());
-    }
 }
